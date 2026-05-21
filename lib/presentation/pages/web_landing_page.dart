@@ -19,6 +19,14 @@ class WebLandingPage extends StatefulWidget {
 class _WebLandingPageState extends State<WebLandingPage>
     with SingleTickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
+  
+  // Section keys for precise scrolling
+  final GlobalKey _servicesKey = GlobalKey();
+  final GlobalKey _projectsKey = GlobalKey();
+  final GlobalKey _experienceKey = GlobalKey();
+  final GlobalKey _skillsKey = GlobalKey();
+  final GlobalKey _contactKey = GlobalKey();
+
   late AnimationController _typeController;
   int _typeIndex = 0;
   String _typedText = '';
@@ -72,12 +80,15 @@ class _WebLandingPageState extends State<WebLandingPage>
     super.dispose();
   }
 
-  void _scrollToSection(double offset) {
-    _scrollController.animateTo(
-      offset,
-      duration: const Duration(milliseconds: 850),
-      curve: Curves.easeInOutCubic,
-    );
+  void _scrollToSection(GlobalKey key) {
+    final context = key.currentContext;
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 850),
+        curve: Curves.easeInOutCubic,
+      );
+    }
   }
 
   @override
@@ -185,13 +196,13 @@ class _WebLandingPageState extends State<WebLandingPage>
           if (isWide && screenWidth > 1200)
             Row(
               children: [
-                _buildNavLink('SERVICES', () => _scrollToSection(700)),
+                _buildNavLink('SERVICES', () => _scrollToSection(_servicesKey)),
                 const SizedBox(width: 32),
-                _buildNavLink('PROJECTS', () => _scrollToSection(1350)),
+                _buildNavLink('PROJECTS', () => _scrollToSection(_projectsKey)),
                 const SizedBox(width: 32),
-                _buildNavLink('EXPERIENCE', () => _scrollToSection(2250)),
+                _buildNavLink('EXPERIENCE', () => _scrollToSection(_experienceKey)),
                 const SizedBox(width: 32),
-                _buildNavLink('SKILLS', () => _scrollToSection(3050)),
+                _buildNavLink('SKILLS', () => _scrollToSection(_skillsKey)),
               ],
             ),
 
@@ -347,7 +358,7 @@ class _WebLandingPageState extends State<WebLandingPage>
           runSpacing: 16,
           children: [
             ElevatedButton(
-              onPressed: () => _scrollToSection(1350),
+              onPressed: () => _scrollToSection(_projectsKey),
               style: ElevatedButton.styleFrom(
                 backgroundColor: CosmicTheme.primaryPurple,
                 padding: const EdgeInsets.symmetric(
@@ -368,7 +379,7 @@ class _WebLandingPageState extends State<WebLandingPage>
               ),
             ),
             OutlinedButton(
-              onPressed: () => _scrollToSection(3900),
+              onPressed: () => _scrollToSection(_contactKey),
               style: OutlinedButton.styleFrom(
                 side: BorderSide(color: Colors.white.withOpacity(0.2)),
                 padding: const EdgeInsets.symmetric(
@@ -432,6 +443,7 @@ class _WebLandingPageState extends State<WebLandingPage>
   Widget _buildServicesSection(double width) {
     bool isWide = width > 900;
     return Container(
+      key: _servicesKey,
       width: width,
       padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 100),
       child: Column(
@@ -565,6 +577,7 @@ class _WebLandingPageState extends State<WebLandingPage>
   Widget _buildProjectsSection(double width) {
     bool isWide = width > 900;
     return Container(
+      key: _projectsKey,
       width: width,
       padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 80),
       child: Column(
@@ -646,6 +659,7 @@ class _WebLandingPageState extends State<WebLandingPage>
 
   Widget _buildExperienceSection(double width) {
     return Container(
+      key: _experienceKey,
       width: width,
       padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 80),
       child: Column(
@@ -831,6 +845,7 @@ class _WebLandingPageState extends State<WebLandingPage>
   Widget _buildSkillsSection(double width) {
     bool isWide = width > 900;
     return Container(
+      key: _skillsKey,
       width: width,
       padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 80),
       child: Column(
@@ -975,6 +990,7 @@ class _WebLandingPageState extends State<WebLandingPage>
   // 7. Footer Section
   Widget _buildFooterSection(double width) {
     return Container(
+      key: _contactKey,
       width: width,
       padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 100),
       decoration: BoxDecoration(
