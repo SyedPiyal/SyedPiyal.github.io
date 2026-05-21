@@ -155,7 +155,7 @@ class _MainPortfolioViewState extends State<MainPortfolioView> {
 
                     // Introduction text
                     Text(
-                      'Interact directly with the simulated iOS/Android phone! Launch built-in apps, play retro arcade games, or browse resume milestones. Click the settings icon in the phone to switch active vector shells.',
+                      'Interact directly with the simulated iOS/Android phone! Launch built-in apps or browse resume milestones. Click the settings icon in the phone to switch active vector shells.',
                       style: GoogleFonts.inter(
                         color: Colors.white.withOpacity(0.45),
                         fontSize: 13,
