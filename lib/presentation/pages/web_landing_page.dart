@@ -997,7 +997,7 @@ class _WebLandingPageState extends State<WebLandingPage>
           ),
           const SizedBox(height: 16),
           Text(
-            'syed.flutter@gmail.com',
+            'syedanamul67@gmail.com',
             style: GoogleFonts.orbitron(
               color: Colors.white,
               fontSize: width > 600 ? 32 : 18,
@@ -1011,14 +1011,14 @@ class _WebLandingPageState extends State<WebLandingPage>
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildSocialIcon(Icons.code, 'https://github.com/syed'),
+              _buildSocialIcon(Icons.code, 'https://github.com/SyedPiyal'),
               const SizedBox(width: 24),
               _buildSocialIcon(
                 Icons.business_center,
-                'https://linkedin.com/in/syed',
+                'https://www.linkedin.com/in/syed-anamul-haque-piyal-74b676241/',
               ),
               const SizedBox(width: 24),
-              _buildSocialIcon(Icons.mail, 'mailto:syed.flutter@gmail.com'),
+              _buildSocialIcon(Icons.mail, 'mailto:syedanamul67@gmail.com'),
             ],
           ),
           const SizedBox(height: 48),
